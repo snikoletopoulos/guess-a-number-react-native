@@ -18,13 +18,12 @@ const StartGameScreen = () => {
 	const [selectedNumber, setSelectedNumber] = useState(9);
 
 	const numberInputHandler = inputValue => {
-		setEnteredValue(inputText.replace(/[^0-9]/g, ""));
+		setEnteredValue(inputValue.replace(/[^0-9]/g, ""));
 	};
 
 	const resetInputHandler = () => {
-    setEnteredValue("");
+		setEnteredValue("");
 		setConfirmed(false);
-		setSelectedNumber(parseInt(enteredValue));
 	};
 
   let confirmedOutput;
@@ -60,7 +59,7 @@ const StartGameScreen = () => {
 						keyboardType="number-pad"
 						maxLength={2}
 						style={styles.input}
-						onChange={numberInputHandler}
+						onChangeText={numberInputHandler}
 					/>
 					<View style={styles.buttonContainer}>
 						<View style={styles.button}>
