@@ -72,7 +72,11 @@ const StartGameScreen = () => {
 					/>
 					<View style={styles.buttonContainer}>
 						<View style={styles.button}>
-							<Button title="Reset" color={colors.accent} onPress={resetInputHandler} />
+							<Button
+								title="Reset"
+								color={colors.accent}
+								onPress={resetInputHandler}
+							/>
 						</View>
 						<View style={styles.button}>
 							<Button
@@ -82,7 +86,7 @@ const StartGameScreen = () => {
 							/>
 						</View>
 					</View>
-          </Card>
+				</Card>
 				{confirmedOutput}
 			</View>
 		</TouchableWithoutFeedback>
