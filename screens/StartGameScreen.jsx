@@ -24,20 +24,31 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	title: {
-    fontSize: 20,
-    marginVertical: 10
-  },
+		fontSize: 20,
+		marginVertical: 10,
+	},
 	inputContainer: {
-    width: 300,
-    maxWidth: "80%",
-    alignItems: "center",
-  },
+		width: 300,
+		maxWidth: "80%",
+		alignItems: "center",
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowRadius: 6,
+		shadowOpacity: 0.26,
+		elevation: 10,
+		backgroundColor: "#fff",
+		padding: 20,
+    borderRadius: 10,
+	},
 	buttonContainer: {
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "space-between",
-    paddingHorizontal: 10
-  },
+		flexDirection: "row",
+		width: "100%",
+		justifyContent: "space-between",
+		paddingHorizontal: 10,
+	},
 });
 
 export default StartGameScreen;
