@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import colors from '../constants/colors';
+import colors from "../constants/colors";
 
 const Header = prop => {
 	return (
@@ -9,6 +9,8 @@ const Header = prop => {
 		</View>
 	);
 };
+
+export default Header;
 
 const styles = StyleSheet.create({
 	header: {
@@ -24,5 +26,3 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 	},
 });
-
-export default Header;

@@ -24,6 +24,8 @@ const StartGameScreen = () => {
 	);
 };
 
+export default StartGameScreen;
+
 const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
@@ -49,5 +51,3 @@ const styles = StyleSheet.create({
 		width: 100,
 	},
 });
-
-export default StartGameScreen;
