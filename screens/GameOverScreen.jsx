@@ -4,7 +4,7 @@ import BodyText from "../components/BodyText";
 import Title from "../components/Title";
 import CircleImg from "../assets/success.png";
 import colors from "../constants/colors";
-import MainButton from '../components/MainButton';
+import MainButton from "../components/MainButton";
 
 const GameOverScreen = props => {
   return (
@@ -14,17 +14,14 @@ const GameOverScreen = props => {
         <Image source={CircleImg} style={styles.image} resizeMode="cover" />
       </View>
       <View style={styles.resultContainer}>
-        <BodyText style={styles.resultText} >
+        <BodyText style={styles.resultText}>
           Your phone needed{" "}
           <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
           guess the number{" "}
           <Text style={styles.highlight}>{props.userNumber}</Text>
         </BodyText>
       </View>
-      <MainButton
-        style={styles.button}
-        onPress={props.onRestart}
-      >New Game</MainButton>
+      <MainButton onPress={props.onRestart}>Nea Game</MainButton>
     </View>
   );
 };
@@ -36,9 +33,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  button: {
-    fontFamily: "open-sans",
   },
   imageContainer: {
     borderRadius: 150,
@@ -59,10 +53,10 @@ const styles = StyleSheet.create({
   },
   resultContainer: {
     marginHorizontal: 30,
-    marginVertical: 20
+    marginVertical: 20,
   },
   resultText: {
     textAlign: "center",
-    fontSize: 20
-  }
+    fontSize: 20,
+  },
 });
