@@ -4,6 +4,7 @@ import BodyText from "../components/BodyText";
 import Title from "../components/Title";
 import CircleImg from "../assets/success.png";
 import colors from "../constants/colors";
+import MainButton from '../components/MainButton';
 
 const GameOverScreen = props => {
   return (
@@ -20,11 +21,10 @@ const GameOverScreen = props => {
           <Text style={styles.highlight}>{props.userNumber}</Text>
         </BodyText>
       </View>
-      <Button
+      <MainButton
         style={styles.button}
-        title="New Game"
         onPress={props.onRestart}
-      />
+      >New Game</MainButton>
     </View>
   );
 };
