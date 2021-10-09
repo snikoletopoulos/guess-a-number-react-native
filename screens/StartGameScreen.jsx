@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Button,
   TouchableWithoutFeedback,
@@ -12,6 +11,7 @@ import Card from "../components/Card";
 import colors from "../constants/colors";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer";
+import BodyText from '../components/BodyText';
 
 const StartGameScreen = props => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -62,9 +62,9 @@ const StartGameScreen = props => {
         Keyboard.dismiss();
       }}>
       <View style={styles.screen}>
-        <Text style={styles.title}>Start new game</Text>
+        <BodyText style={styles.title}>Start new game</BodyText>
         <Card style={styles.inputContainer}>
-          <Text>Select a number</Text>
+          <BodyText>Select a number</BodyText>
           <Input
             value={enteredValue}
             autoCorrect={false}
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 100,
+		fontFamily: "open-sans",
   },
   input: {
     width: 50,
