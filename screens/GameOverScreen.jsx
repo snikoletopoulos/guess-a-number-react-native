@@ -21,7 +21,7 @@ const GameOverScreen = props => {
           <Text style={styles.highlight}>{props.userNumber}</Text>
         </BodyText>
       </View>
-      <MainButton onPress={props.onRestart}>Nea Game</MainButton>
+      <MainButton onPress={props.onRestart}>New Game</MainButton>
     </View>
   );
 };
