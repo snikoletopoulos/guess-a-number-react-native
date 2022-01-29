@@ -23,7 +23,7 @@ const StartGameScreen: React.FC<Props> = props => {
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(9);
 
-  const numberInputHandler = inputValue => {
+  const numberInputHandler = (inputValue: string) => {
     setEnteredValue(inputValue.replace(/[^0-9]/g, ""));
   };
 

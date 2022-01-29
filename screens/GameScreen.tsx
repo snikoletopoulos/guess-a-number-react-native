@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, FlatList, Alert } from "react-native";
 import NumberContainer from "components/NumberContainer";
 import Card from "components/Card";
 import MainButton from "components/MainButton";
@@ -8,7 +8,7 @@ import Title from "components/Title";
 import BodyText from "components/BodyText";
 import colors from "constants/colors";
 
-const generateRandomBetween = (min, max, exclude) => {
+const generateRandomBetween = (min: number, max: number, exclude: number): number => {
   min = Math.ceil(min);
   min = Math.floor(min);
   const randomNumber = Math.floor(Math.random() * (max - min)) + min;
@@ -19,14 +19,19 @@ const generateRandomBetween = (min, max, exclude) => {
   }
 };
 
-const renderListItem = (listLength, itemData) => (
-    <View style={styles.listItem}>
-      <BodyText>#{listLength - itemData.index}</BodyText>
-      <BodyText>{itemData.item}</BodyText>
-    </View>
+const renderListItem = (listLength: number, itemData) => (
+  <View style={styles.listItem}>
+    <BodyText>#{listLength - itemData.index}</BodyText>
+    <BodyText>{itemData.item}</BodyText>
+  </View>
 );
 
-const GameScreen = ({ userChoice, onGameOver }) => {
+interface Props {
+  userChoice: number;
+  onGameOver: (number: number) => void;
+}
+
+const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
   const initialGuess = generateRandomBetween(1, 100, userChoice);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [pastGuesses, setPastGuesses] = useState([initialGuess]);
@@ -40,7 +45,7 @@ const GameScreen = ({ userChoice, onGameOver }) => {
     }
   }, [currentGuess, userChoice, onGameOver]);
 
-  const nextGuessHandler = direction => {
+  const nextGuessHandler = (direction: "lower" | "greater") => {
     if (
       (direction === "lower" && currentGuess < userChoice) ||
       (direction === "greater" && currentGuess > userChoice)
