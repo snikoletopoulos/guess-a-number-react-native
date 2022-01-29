@@ -1,7 +1,12 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 
-const BodyText = props => {
+interface Props {
+  style?: any;
+  [key: string]: any;
+}
+
+const BodyText: React.FC<Props> = props => {
   return (
     <Text {...props} style={{ ...styles.bodyText, ...props.style }}>
       {props.children}

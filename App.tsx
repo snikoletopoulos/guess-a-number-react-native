@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Header from "./components/Header";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
@@ -14,8 +14,8 @@ const fetchFonts = () => {
   });
 };
 
-export default function App() {
-  const [userNumber, setUserNumber] = useState(null);
+const App: React.FC = () => {
+  const [userNumber, setUserNumber] = useState<number | null>(0);
   const [rounds, setRounds] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -34,11 +34,11 @@ export default function App() {
     setUserNumber(null);
   };
 
-  const startGameHandler = selectedNumber => {
+  const startGameHandler = (selectedNumber: number) => {
     setUserNumber(selectedNumber);
   };
 
-  const gameOverHandler = numOfRounds => {
+  const gameOverHandler = (numOfRounds: number) => {
     setRounds(numOfRounds);
   };
 
@@ -64,7 +64,9 @@ export default function App() {
       {content}
     </View>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   screen: {

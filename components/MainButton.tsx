@@ -2,7 +2,11 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import colors from "../constants/colors";
 
-const MainButton = props => {
+interface Props {
+  onPress: () => void;
+}
+
+const MainButton: React.FC<Props> = props => {
   return (
     <TouchableOpacity onPress={props.onPress} activeOpacity={0.6}>
       <View style={styles.button}>

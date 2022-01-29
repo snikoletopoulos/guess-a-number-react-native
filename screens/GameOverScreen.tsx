@@ -6,7 +6,13 @@ import CircleImg from "../assets/success.png";
 import colors from "../constants/colors";
 import MainButton from "../components/MainButton";
 
-const GameOverScreen = props => {
+interface Props {
+  roundsNumber: number;
+  userNumber: number;
+  onRestart: () => void;
+}
+
+const GameOverScreen: React.FC<Props> = props => {
   return (
     <View style={styles.screen}>
       <Title>The Game is Over!</Title>

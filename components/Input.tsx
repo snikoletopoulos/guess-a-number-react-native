@@ -1,7 +1,12 @@
 import React from "react";
 import { TextInput, StyleSheet } from "react-native";
 
-const Input = props => {
+interface Props {
+  style?: any;
+  [key: string]: any;
+}
+
+const Input: React.FC<Props> = props => {
   return <TextInput {...props} style={{ ...styles.input, ...props.style }} />;
 };
 

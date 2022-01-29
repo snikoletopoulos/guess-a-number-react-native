@@ -11,10 +11,14 @@ import Card from "../components/Card";
 import colors from "../constants/colors";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer";
-import BodyText from '../components/BodyText';
-import MainButton from '../components/MainButton';
+import BodyText from "../components/BodyText";
+import MainButton from "../components/MainButton";
 
-const StartGameScreen = props => {
+interface Props {
+  onStartGame: (number: number) => void;
+}
+
+const StartGameScreen: React.FC<Props> = props => {
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(9);
@@ -37,7 +41,9 @@ const StartGameScreen = props => {
         <MainButton
           color={colors.primary}
           onPress={() => props.onStartGame(selectedNumber)}
-        >Start Game</MainButton>
+        >
+          Start Game
+        </MainButton>
       </Card>
     );
   }
@@ -60,7 +66,8 @@ const StartGameScreen = props => {
     <TouchableWithoutFeedback
       onPress={() => {
         Keyboard.dismiss();
-      }}>
+      }}
+    >
       <View style={styles.screen}>
         <BodyText style={styles.title}>Start new game</BodyText>
         <Card style={styles.inputContainer}>
@@ -123,7 +130,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 100,
-		fontFamily: "open-sans",
+    fontFamily: "open-sans",
   },
   input: {
     width: 50,

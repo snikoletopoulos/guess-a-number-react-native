@@ -1,12 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import colors from "../constants/colors";
-import Title from './Title';
+import Title from "./Title";
 
-const Header = prop => {
+interface Props {
+  title: string;
+}
+
+const Header: React.FC<Props> = props => {
   return (
     <View style={styles.header}>
-      <Title style={styles.headerTitle}>{prop.title}</Title>
+      <Title style={styles.headerTitle}>{props.title}</Title>
     </View>
   );
 };
