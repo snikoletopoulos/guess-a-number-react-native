@@ -16,21 +16,23 @@ interface Props {
 
 const GameOverScreen: React.FC<Props> = props => {
   return (
-    <View style={styles.screen}>
-      <Title>The Game is Over!</Title>
-      <View style={styles.imageContainer}>
-        <Image source={CircleImg} style={styles.image} resizeMode="cover" />
+    <ScrollView>
+      <View style={styles.screen}>
+        <Title>The Game is Over!</Title>
+        <View style={styles.imageContainer}>
+          <Image source={CircleImg} style={styles.image} resizeMode="cover" />
+        </View>
+        <View style={styles.resultContainer}>
+          <BodyText style={styles.resultText}>
+            Your phone needed{" "}
+            <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
+            guess the number{" "}
+            <Text style={styles.highlight}>{props.userNumber}</Text>
+          </BodyText>
+        </View>
+        <MainButton onPress={props.onRestart}>New Game</MainButton>
       </View>
-      <View style={styles.resultContainer}>
-        <BodyText style={styles.resultText}>
-          Your phone needed{" "}
-          <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
-          guess the number{" "}
-          <Text style={styles.highlight}>{props.userNumber}</Text>
-        </BodyText>
-      </View>
-      <MainButton onPress={props.onRestart}>New Game</MainButton>
-    </View>
+    </ScrollView>
   );
 };
 
