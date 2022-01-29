@@ -7,9 +7,10 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
-import Card from "components/Card";
 import colors from "constants/colors";
-import Input from "../components/Input";
+
+import Card from "components/Card";
+import Input from "components/Input";
 import NumberContainer from "components/NumberContainer";
 import BodyText from "components/BodyText";
 import MainButton from "components/MainButton";

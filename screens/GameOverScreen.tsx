@@ -1,9 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
+import colors from "constants/colors";
+
+import CircleImg from "assets/success.png";
+
 import BodyText from "components/BodyText";
 import Title from "components/Title";
-import CircleImg from "assets/success.png";
-import colors from "constants/colors";
 import MainButton from "components/MainButton";
 
 interface Props {

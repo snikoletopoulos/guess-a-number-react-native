@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import colors from "constants/colors";
+
 import Title from "components/Title";
 
 interface Props {

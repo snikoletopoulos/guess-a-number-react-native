@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View, FlatList, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import colors from "constants/colors";
+
 import NumberContainer from "components/NumberContainer";
 import Card from "components/Card";
 import MainButton from "components/MainButton";
-import { Ionicons } from "@expo/vector-icons";
 import Title from "components/Title";
 import BodyText from "components/BodyText";
-import colors from "constants/colors";
 
 const generateRandomBetween = (min: number, max: number, exclude: number): number => {
   min = Math.ceil(min);
