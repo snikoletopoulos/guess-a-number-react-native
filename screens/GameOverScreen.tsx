@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, Dimensions, ScrollView } from "react-native";
 import colors from "constants/colors";
 
 import CircleImg from "assets/success.png";
@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    borderRadius: 150,
+    width: Dimensions.get("window").width * 0.7,
+    height: Dimensions.get("window").width * 0.7,
+    borderRadius: Dimensions.get("window").width * 0.7 /2,
     borderWidth: 3,
     borderColor: "black",
-    width: 300,
-    height: 300,
     overflow: "hidden",
-    marginVertical: 30,
+    marginVertical: Dimensions.get("window").height / 30,
   },
   image: {
     width: "100%",
@@ -61,10 +61,10 @@ const styles = StyleSheet.create({
   },
   resultContainer: {
     marginHorizontal: 30,
-    marginVertical: 20,
+    marginVertical: Dimensions.get("window").height / 60,
   },
   resultText: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: Dimensions.get("window").height < 400 ? 16 : 20,
   },
 });
