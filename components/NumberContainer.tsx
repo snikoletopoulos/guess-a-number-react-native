@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import colors from "constants/colors";
 
 import BodyText from "components/BodyText";
@@ -14,7 +14,12 @@ const NumberContainer: React.FC = props => {
 
 export default NumberContainer;
 
-const styles = StyleSheet.create({
+interface Styles {
+  container: ViewStyle;
+  number: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   container: {
     borderWidth: 2,
     borderColor: colors.accent,

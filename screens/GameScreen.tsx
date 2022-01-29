@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import {
   StyleSheet,
   View,
+  ViewStyle,
   FlatList,
   Alert,
   Dimensions,
@@ -98,7 +99,15 @@ const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
 
 export default GameScreen;
 
-const styles = StyleSheet.create({
+interface Styles {
+  screen: ViewStyle;
+  buttonContainer: ViewStyle;
+  listContainer: ViewStyle;
+  list: ViewStyle;
+  listItem: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   screen: {
     flex: 1,
     padding: 10,

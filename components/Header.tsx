@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, ViewStyle, TextStyle, StyleSheet } from "react-native";
 import colors from "constants/colors";
 
 import Title from "components/Title";
@@ -18,7 +18,12 @@ const Header: React.FC<Props> = props => {
 
 export default Header;
 
-const styles = StyleSheet.create({
+interface Styles {
+  header: ViewStyle;
+  headerTitle: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   header: {
     width: "100%",
     height: 90,

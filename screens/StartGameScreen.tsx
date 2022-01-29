@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   View,
+  ViewStyle,
   StyleSheet,
   Button,
   TouchableWithoutFeedback,
@@ -104,6 +105,11 @@ const StartGameScreen: React.FC<Props> = props => {
 };
 
 export default StartGameScreen;
+
+interface Styles {
+  screen: ViewStyle;
+
+}
 
 const styles = StyleSheet.create({
   screen: {

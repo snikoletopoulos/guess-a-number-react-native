@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+  TouchableOpacity,
+} from "react-native";
 import colors from "constants/colors";
 
 interface Props {
@@ -18,7 +25,12 @@ const MainButton: React.FC<Props> = props => {
 
 export default MainButton;
 
-const styles = StyleSheet.create({
+interface Styles {
+  button: ViewStyle;
+  text: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   button: {
     backgroundColor: colors.primary,
     paddingVertical: 12,

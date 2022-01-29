@@ -1,14 +1,14 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TextStyle, StyleProp } from "react-native";
 
 interface Props {
-  style?: any;
+  style?: StyleProp<TextStyle>;
   [key: string]: any;
 }
 
 const BodyText: React.FC<Props> = props => {
   return (
-    <Text {...props} style={{ ...styles.bodyText, ...props.style }}>
+    <Text {...props} style={[styles.bodyText, props.style]}>
       {props.children}
     </Text>
   );
@@ -16,7 +16,11 @@ const BodyText: React.FC<Props> = props => {
 
 export default BodyText;
 
-const styles = StyleSheet.create({
+interface Styles {
+  bodyText: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   bodyText: {
     fontFamily: "open-sans",
   },

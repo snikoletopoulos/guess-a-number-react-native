@@ -1,19 +1,21 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, ViewStyle, StyleSheet, StyleProp } from "react-native";
 
 interface Props {
-  style?: any;
+  style?: StyleProp<ViewStyle>;
 }
 
 const Card: React.FC<Props> = props => {
-  return (
-    <View style={{ ...styles.card, ...props.style }}>{props.children}</View>
-  );
+  return <View style={[styles.card, props.style]}>{props.children}</View>;
 };
 
 export default Card;
 
-const styles = StyleSheet.create({
+interface Styles {
+  card: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   card: {
     shadowColor: "#000",
     shadowOffset: {

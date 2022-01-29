@@ -1,5 +1,15 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, Dimensions, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ViewStyle,
+  Image,
+  ImageStyle,
+  Text,
+  TextStyle,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import colors from "constants/colors";
 
 import CircleImg from "assets/success.png";
@@ -38,7 +48,16 @@ const GameOverScreen: React.FC<Props> = props => {
 
 export default GameOverScreen;
 
-const styles = StyleSheet.create({
+interface Styles {
+  screen: ViewStyle;
+  imageContainer: ViewStyle;
+  image: ImageStyle;
+  resultContainer: ViewStyle;
+  resultText: TextStyle;
+  highlight: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   screen: {
     flex: 1,
     justifyContent: "center",
@@ -47,7 +66,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: Dimensions.get("window").width * 0.7,
     height: Dimensions.get("window").width * 0.7,
-    borderRadius: Dimensions.get("window").width * 0.7 /2,
+    borderRadius: (Dimensions.get("window").width * 0.7) / 2,
     borderWidth: 3,
     borderColor: "black",
     overflow: "hidden",

@@ -1,14 +1,14 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, StyleProp, Text, TextStyle } from "react-native";
 
 interface Props {
-  style?: any;
+  style?: StyleProp<TextStyle>;
   [key: string]: any;
 }
 
 const Title: React.FC<Props> = props => {
   return (
-    <Text {...props} style={{ ...styles.title, ...props.style }}>
+    <Text {...props} style={[styles.title, props.style]}>
       {props.children}
     </Text>
   );
@@ -16,7 +16,11 @@ const Title: React.FC<Props> = props => {
 
 export default Title;
 
-const styles = StyleSheet.create({
+interface Styles {
+  title: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   title: {
     fontSize: 18,
     fontFamily: "open-sans-bold",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import Header from "components/Header";
 import StartGameScreen from "screens/StartGameScreen";
 import GameScreen from "screens/GameScreen";
@@ -68,7 +68,11 @@ const App: React.FC = () => {
 
 export default App;
 
-const styles = StyleSheet.create({
+interface Styles {
+  screen: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   screen: {
     flex: 1,
   },
