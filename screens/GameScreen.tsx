@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import NumberContainer from "../components/NumberContainer";
-import Card from "../components/Card";
-import MainButton from "../components/MainButton";
+import NumberContainer from "components/NumberContainer";
+import Card from "components/Card";
+import MainButton from "components/MainButton";
 import { Ionicons } from "@expo/vector-icons";
-import Title from "../components/Title";
-import BodyText from "../components/BodyText";
-import colors from "../constants/colors";
+import Title from "components/Title";
+import BodyText from "components/BodyText";
+import colors from "constants/colors";
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
