@@ -15,7 +15,7 @@ const fetchFonts = () => {
 };
 
 const App: React.FC = () => {
-  const [userNumber, setUserNumber] = useState<number | null>(0);
+  const [userNumber, setUserNumber] = useState<number | null>(null);
   const [rounds, setRounds] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -24,7 +24,7 @@ const App: React.FC = () => {
       <AppLoading
         startAsync={fetchFonts}
         onFinish={() => setDataLoaded(true)}
-        onError={err => console.log(err, "hiiiiiiiiii")}
+        onError={error => console.log(error, "AppLoading error")}
       />
     );
   }
