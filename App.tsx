@@ -48,7 +48,7 @@ const App: React.FC = () => {
     content = (
       <GameScreen userChoice={userNumber} onGameOver={gameOverHandler} />
     );
-  } else if (rounds > 0) {
+  } else if (userNumber && rounds > 0) {
     content = (
       <GameOverScreen
         roundsNumber={rounds}
