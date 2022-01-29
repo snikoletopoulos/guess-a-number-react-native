@@ -3,6 +3,8 @@ import { StyleSheet, View, FlatList, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "constants/colors";
 
+import { generateRandomBetween } from "helpers/numbers";
+
 import NumberContainer from "components/NumberContainer";
 import Card from "components/Card";
 import MainButton from "components/MainButton";
@@ -10,17 +12,6 @@ import Title from "components/Title";
 import BodyText from "components/BodyText";
 
 const generateRandomBetween = (min: number, max: number, exclude: number): number => {
-  min = Math.ceil(min);
-  min = Math.floor(min);
-  const randomNumber = Math.floor(Math.random() * (max - min)) + min;
-  if (randomNumber === exclude) {
-    return generateRandomBetween(min, max, exclude);
-  } else {
-    return randomNumber;
-  }
-};
-
-const renderListItem = (listLength: number, itemData) => (
   <View style={styles.listItem}>
     <BodyText>#{listLength - itemData.index}</BodyText>
     <BodyText>{itemData.item}</BodyText>
