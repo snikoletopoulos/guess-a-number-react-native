@@ -59,7 +59,6 @@ const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
       currentGuess
     );
     setCurrentGuess(nextNumber);
-    // setRounds(currentRounds => ++currentRounds);
     setPastGuesses(pastGuesses => [nextNumber, ...pastGuesses]);
   };
 

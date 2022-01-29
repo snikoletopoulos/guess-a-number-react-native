@@ -39,10 +39,7 @@ const StartGameScreen: React.FC<Props> = props => {
       <Card style={styles.summaryContainer}>
         <BodyText>You selected</BodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <MainButton
-          color={colors.primary}
-          onPress={() => props.onStartGame(selectedNumber)}
-        >
+        <MainButton onPress={() => props.onStartGame(selectedNumber)}>
           Start Game
         </MainButton>
       </Card>
