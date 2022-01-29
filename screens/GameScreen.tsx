@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, View, FlatList, Alert, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Alert,
+  Dimensions,
+  ListRenderItemInfo,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "constants/colors";
 
@@ -11,7 +18,10 @@ import MainButton from "components/MainButton";
 import Title from "components/Title";
 import BodyText from "components/BodyText";
 
-const generateRandomBetween = (min: number, max: number, exclude: number): number => {
+const renderListItem = (
+  listLength: number,
+  itemData: ListRenderItemInfo<number>
+) => (
   <View style={styles.listItem}>
     <BodyText>#{listLength - itemData.index}</BodyText>
     <BodyText>{itemData.item}</BodyText>
