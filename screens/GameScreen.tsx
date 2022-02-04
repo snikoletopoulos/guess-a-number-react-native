@@ -113,6 +113,7 @@ const styles = StyleSheet.create<Styles>({
     padding: 10,
     alignItems: "center",
   },
+
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
@@ -120,14 +121,17 @@ const styles = StyleSheet.create<Styles>({
     width: 300,
     maxWidth: "90%",
   },
+
   listContainer: {
     flex: 1,
     width: Dimensions.get("window").width > 350 ? "60%" : "80%",
   },
+
   list: {
     flexGrow: 1,
     justifyContent: "flex-end",
   },
+
   listItem: {
     borderColor: colors.accent,
     borderWidth: 1,
