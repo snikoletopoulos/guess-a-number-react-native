@@ -32,12 +32,16 @@ const StartGameScreen: React.FC<Props> = props => {
   );
 
   useEffect(() => {
-    const subscription = Dimensions.addEventListener("change", () => {
+    const updateLayout = () => {
       setButtonWidth(Dimensions.get("window").width / 4);
-    });
+    };
 
-    return () => subscription.remove();
-  }, []);
+    Dimensions.addEventListener("change", updateLayout);
+
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
 
   const numberInputHandler = (inputValue: string) => {
     setEnteredValue(inputValue.replace(/[^0-9]/g, ""));

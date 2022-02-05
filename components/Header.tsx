@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ViewStyle, TextStyle, StyleSheet } from "react-native";
+import { View, ViewStyle, TextStyle, StyleSheet, Platform } from "react-native";
 import colors from "constants/colors";
 
 import Title from "components/Title";
@@ -10,7 +10,15 @@ interface Props {
 
 const Header: React.FC<Props> = props => {
   return (
-    <View style={styles.header}>
+    <View
+      style={[
+        styles.headerBase,
+        Platform.select({
+          ios: styles.headerIOS,
+          android: styles.headerAndroid,
+        }),
+      ]}
+    >
       <Title style={styles.headerTitle}>{props.title}</Title>
     </View>
   );
@@ -19,21 +27,32 @@ const Header: React.FC<Props> = props => {
 export default Header;
 
 interface Styles {
-  header: ViewStyle;
+  headerBase: ViewStyle;
+  headerIOS: ViewStyle;
+  headerAndroid: ViewStyle;
   headerTitle: TextStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
-  header: {
+  headerBase: {
     width: "100%",
     height: 90,
     paddingTop: 36,
-    backgroundColor: colors.primary,
     alignItems: "center",
     justifyContent: "center",
   },
 
+  headerIOS: {
+    backgroundColor: "white",
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
+  },
+
+  headerAndroid: {
+    backgroundColor: colors.primary,
+  },
+
   headerTitle: {
-    color: "white",
+    color: Platform.OS === "ios" ? colors.primary : "white",
   },
 });
