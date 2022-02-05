@@ -65,7 +65,11 @@ const StartGameScreen: React.FC<Props> = props => {
     const chosenNumber = +enteredValue;
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
       Alert.alert("Invalid number!", "Number must be between 1 and 99.", [
-        { text: "Okay", style: "destructive", onPress: resetInputHandler },
+        {
+          text: "Okay",
+          style: "destructive",
+          onPress: resetInputHandler,
+        },
       ]);
       return;
     }
@@ -133,31 +137,37 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
   },
+
   title: {
     fontSize: 20,
     marginVertical: 10,
     fontFamily: "open-sans-bold",
   },
+
   inputContainer: {
     minWidth: 300,
     width: "80%",
     maxWidth: "95%",
     alignItems: "center",
   },
+
   buttonContainer: {
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
     paddingHorizontal: 10,
   },
+
   button: {
     width: Dimensions.get("window").width / 4,
     fontFamily: "open-sans",
   },
+
   input: {
     width: 50,
     textAlign: "center",
   },
+
   summaryContainer: {
     marginTop: 20,
     alignItems: "center",

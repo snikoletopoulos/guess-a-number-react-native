@@ -32,6 +32,7 @@ const styles = StyleSheet.create<Styles>({
     alignItems: "center",
     justifyContent: "center",
   },
+
   headerTitle: {
     color: "white",
   },

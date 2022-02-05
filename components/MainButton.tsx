@@ -37,6 +37,7 @@ const styles = StyleSheet.create<Styles>({
     paddingHorizontal: 30,
     borderRadius: 25,
   },
+
   text: {
     color: "white",
     fontFamily: "open-sans",

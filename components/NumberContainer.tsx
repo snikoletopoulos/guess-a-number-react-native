@@ -29,6 +29,7 @@ const styles = StyleSheet.create<Styles>({
     alignItems: "center",
     justifyContent: "center",
   },
+
   number: {
     color: colors.accent,
     fontSize: 22,
