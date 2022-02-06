@@ -10,7 +10,10 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "*": [ "*", "*.ios", "*.android" ]
+    }
   },
   "exclude": [
     "node_modules",
