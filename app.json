@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "guess-a-number",
+    "name": "Guess a Number",
     "slug": "guess-a-number",
+    "description": "A project to get familiar with React Native",
+    "githubUrl": "https://github.com/snikoletopoulos/guess-a-number-react-native",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -13,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
