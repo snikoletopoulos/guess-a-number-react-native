@@ -15,11 +15,11 @@ interface Props {
 
 const MainButton: React.FC<Props> = props => {
   return (
-    <TouchableOpacity onPress={props.onPress} activeOpacity={0.6}>
-      <View style={styles.button}>
-        <Text style={styles.text}>{props.children}</Text>
-      </View>
-    </TouchableOpacity>
+      <TouchableOpacity onPress={props.onPress} activeOpacity={0.6}>
+        <View style={styles.button}>
+          <Text style={styles.text}>{props.children}</Text>
+        </View>
+      </TouchableOpacity>
   );
 };
 
