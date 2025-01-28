@@ -24,7 +24,7 @@ const renderListItem = (
   itemData: ListRenderItemInfo<number>
 ) => (
   <View style={styles.listItem}>
-    <BodyText>#{listLength - itemData.index}</BodyText>
+    <BodyText>#{listLength - itemData.index}test</BodyText>
     <BodyText>{itemData.item}</BodyText>
   </View>
 );
