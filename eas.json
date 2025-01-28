@@ -1,0 +1,29 @@
+{
+  "build": {
+    "development": {
+      "environment": "development",
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true,
+        "image": "latest"
+      },
+      "env": { "APP_VARIANT": "development" }
+    },
+    "staging": {
+      "environment": "preview",
+      "channel": "preview",
+      "distribution": "internal",
+      "ios": { "image": "latest" },
+      "env": { "APP_VARIANT": "staging" }
+    },
+    "production": {
+      "environment": "production",
+      "channel": "production",
+      "autoIncrement": true,
+      "ios": { "image": "latest" },
+      "env": { "APP_VARIANT": "production" }
+    }
+  }
+}
