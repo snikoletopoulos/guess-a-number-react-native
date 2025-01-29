@@ -1,7 +1,6 @@
-import { View, TextStyle, StyleSheet, Platform } from "react-native";
-import colors from "constants/colors";
-
+import { Platform, StyleSheet, View } from "react-native";
 import { Title } from "components/Title";
+import colors from "constants/colors";
 
 export const Header = ({ title }: { title: string }) => (
   <View

@@ -1,8 +1,7 @@
 import { PropsWithChildren } from "react";
 import { StyleSheet, View } from "react-native";
-import colors from "constants/colors";
-
 import { BodyText } from "components/BodyText";
+import colors from "constants/colors";
 
 export const NumberContainer = ({ children }: PropsWithChildren) => (
   <View style={styles.container}>

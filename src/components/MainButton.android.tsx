@@ -1,13 +1,13 @@
+import { PropsWithChildren } from "react";
 import {
+  Platform,
   StyleSheet,
   Text,
-  View,
-  TouchableOpacity,
   TouchableNativeFeedback,
-  Platform,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import colors from "constants/colors";
-import { PropsWithChildren } from "node_modules/@types/react";
 
 const MainButton = ({
   onPress,

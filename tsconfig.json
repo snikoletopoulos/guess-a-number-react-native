@@ -11,9 +11,9 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "*": [ "*", "*.ios", "*.android" ]
+      "*": ["*", "*.ios", "*.android"]
     }
   },
   "exclude": [
