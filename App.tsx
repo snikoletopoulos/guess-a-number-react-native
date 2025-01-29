@@ -7,13 +7,6 @@ import { GameOverScreen } from "screens/GameOverScreen";
 import { GameScreen } from "screens/GameScreen";
 import { StartGameScreen } from "screens/StartGameScreen";
 
-const fetchFonts = () => {
-  return Font.loadAsync({
-    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
-  });
-};
-
 SplashScreen.preventAutoHideAsync();
 
 const App = () => {
@@ -22,7 +15,10 @@ const App = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    fetchFonts()
+    Font.loadAsync({
+      "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+      "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+    })
       .then(() => setDataLoaded(true))
       .catch(error => console.log(error, "AppLoading error"));
   }, []);
