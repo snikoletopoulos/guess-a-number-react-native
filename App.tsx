@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -19,7 +19,14 @@ const App = () => {
     void Font.loadAsync({
       "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
       "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
-    }).then(() => setDataLoaded(true));
+    })
+      .then(() => setDataLoaded(true))
+      .catch(() =>
+        Alert.alert(
+          "Error",
+          "Failed to load application resources. Please restart the app.",
+        ),
+      );
   }, []);
 
   if (!dataLoaded) {

@@ -49,7 +49,9 @@ export const StartGameScreen = ({
       <Card style={styles.summaryContainer}>
         <BodyText>You selected</BodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <MainButton onPress={() => onStartGame(selectedNumber)}>
+        <MainButton
+          onPress={() => selectedNumber && onStartGame(selectedNumber)}
+        >
           Start Game
         </MainButton>
       </Card>
