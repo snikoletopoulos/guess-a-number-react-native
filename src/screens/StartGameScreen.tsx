@@ -10,12 +10,13 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { BodyText } from "components/BodyText";
-import { Card } from "components/Card";
-import { Input } from "components/Input";
-import { MainButton } from "components/MainButton";
-import { NumberContainer } from "components/NumberContainer";
-import colors from "constants/colors";
+
+import { BodyText } from "@/components/BodyText";
+import { Card } from "@/components/Card";
+import { Input } from "@/components/Input";
+import { MainButton } from "@/components/MainButton";
+import { NumberContainer } from "@/components/NumberContainer";
+import colors from "@/constants/colors";
 
 export const StartGameScreen = ({
   onStartGame,

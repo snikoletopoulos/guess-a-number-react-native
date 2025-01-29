@@ -1,26 +1,21 @@
-import { Platform, StyleSheet, View } from "react-native";
-import { Title } from "components/Title";
-import colors from "constants/colors";
+import { Platform, SafeAreaView, StyleSheet } from "react-native";
+
+import { Title } from "@/components/Title";
+import colors from "@/constants/colors";
 
 export const Header = ({ title }: { title: string }) => (
-  <View
+  <SafeAreaView
     style={[
-      styles.headerBase,
-      Platform.select({
-        ios: styles.headerIOS,
-        android: styles.headerAndroid,
-      }),
+      styles.container,
+      Platform.OS === "ios" ? styles.headerIOS : styles.headerAndroid,
     ]}
   >
     <Title style={styles.headerTitle}>{title}</Title>
-  </View>
+  </SafeAreaView>
 );
 
 const styles = StyleSheet.create({
-  headerBase: {
-    width: "100%",
-    height: 90,
-    paddingTop: 36,
+  container: {
     alignItems: "center",
     justifyContent: "center",
   },
@@ -34,5 +29,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     color: Platform.OS === "ios" ? colors.primary : "white",
+    marginBottom: 8,
   },
 });

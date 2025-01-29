@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextProps } from "react-native";
+import { StyleSheet, Text, type TextProps } from "react-native";
 
 export const Title = ({ style, children, ...restProps }: TextProps) => (
   <Text {...restProps} style={[styles.title, style]}>

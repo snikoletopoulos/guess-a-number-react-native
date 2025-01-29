@@ -1,30 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  Alert,
-  Dimensions,
-  FlatList,
-  ListRenderItemInfo,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Alert, Dimensions, FlatList, StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { BodyText } from "components/BodyText";
-import { Card } from "components/Card";
-import { MainButton } from "components/MainButton";
-import { NumberContainer } from "components/NumberContainer";
-import { Title } from "components/Title";
-import colors from "constants/colors";
-import { generateRandomBetween } from "helpers/numbers";
 
-const renderListItem = (
-  listLength: number,
-  itemData: ListRenderItemInfo<number>,
-) => (
-  <View style={styles.listItem}>
-    <BodyText>#{listLength - itemData.index}test</BodyText>
-    <BodyText>{itemData.item}</BodyText>
-  </View>
-);
+import { BodyText } from "@/components/BodyText";
+import { Card } from "@/components/Card";
+import { MainButton } from "@/components/MainButton";
+import { NumberContainer } from "@/components/NumberContainer";
+import { Title } from "@/components/Title";
+import colors from "@/constants/colors";
+import { generateRandomBetween } from "@/helpers/numbers";
 
 export const GameScreen = ({
   userChoice,
@@ -50,7 +34,7 @@ export const GameScreen = ({
     if (currentGuess === userChoice) {
       onGameOver(pastGuesses.length);
     }
-  }, [currentGuess, userChoice, onGameOver]);
+  }, [currentGuess, userChoice, onGameOver, pastGuesses.length]);
 
   useEffect(() => {
     const subscription = Dimensions.addEventListener("change", () => {
@@ -87,40 +71,35 @@ export const GameScreen = ({
     setPastGuesses(pastGuesses => [nextNumber, ...pastGuesses]);
   };
 
-  let listContainerStyle = styles.listContainer;
-  let gameControls: JSX.Element;
+  let gameControls = (
+    <>
+      <NumberContainer>{currentGuess}</NumberContainer>
 
-  if (deviceWidth < 350) {
-    listContainerStyle = styles.listContainerBig;
-  }
+      <Card style={styles.buttonContainer}>
+        <MainButton onPress={() => nextGuessHandler("lower")}>
+          <Ionicons name="remove" size={24} color="white" />
+        </MainButton>
+
+        <MainButton onPress={() => nextGuessHandler("greater")}>
+          <Ionicons name="add" size={24} color="white" />
+        </MainButton>
+      </Card>
+    </>
+  );
 
   if (deviceHeight < 400) {
     gameControls = (
       <View style={styles.controls}>
-        <MainButton onPress={nextGuessHandler.bind(this, "lower")}>
+        <MainButton onPress={() => nextGuessHandler("lower")}>
           <Ionicons name="remove" size={24} color="white" />
         </MainButton>
+
         <NumberContainer>{currentGuess}</NumberContainer>
-        <MainButton onPress={nextGuessHandler.bind(this, "greater")}>
+
+        <MainButton onPress={() => nextGuessHandler("greater")}>
           <Ionicons name="add" size={24} color="white" />
         </MainButton>
       </View>
-    );
-  } else {
-    gameControls = (
-      <>
-        <NumberContainer>{currentGuess}</NumberContainer>
-
-        <Card style={styles.buttonContainer}>
-          <MainButton onPress={nextGuessHandler.bind(this, "lower")}>
-            <Ionicons name="remove" size={24} color="white" />
-          </MainButton>
-
-          <MainButton onPress={nextGuessHandler.bind(this, "greater")}>
-            <Ionicons name="add" size={24} color="white" />
-          </MainButton>
-        </Card>
-      </>
     );
   }
 
@@ -129,11 +108,20 @@ export const GameScreen = ({
       <Title>Opponent's Guess</Title>
       {gameControls}
 
-      <View style={listContainerStyle}>
+      <View
+        style={
+          deviceWidth < 350 ? styles.listContainerBig : styles.listContainer
+        }
+      >
         <FlatList
           keyExtractor={guess => guess.toString()}
           data={pastGuesses}
-          renderItem={renderListItem.bind(this, pastGuesses.length)}
+          renderItem={item => (
+            <View style={styles.listItem}>
+              <BodyText>#{pastGuesses.length - item.index}test</BodyText>
+              <BodyText>{item.item}</BodyText>
+            </View>
+          )}
           contentContainerStyle={styles.list}
         />
       </View>

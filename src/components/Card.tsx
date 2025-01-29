@@ -1,4 +1,4 @@
-import { StyleSheet, View, ViewProps } from "react-native";
+import { StyleSheet, View, type ViewProps } from "react-native";
 
 export const Card = (props: ViewProps) => (
   <View style={[styles.card, props.style]}>{props.children}</View>

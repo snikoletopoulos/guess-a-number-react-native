@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Dimensions,
   Image,
@@ -7,11 +6,11 @@ import {
   Text,
   View,
 } from "react-native";
-import CircleImg from "assets/success.png";
-import { BodyText } from "components/BodyText";
-import { MainButton } from "components/MainButton";
-import { Title } from "components/Title";
-import colors from "constants/colors";
+
+import { BodyText } from "@/components/BodyText";
+import { MainButton } from "@/components/MainButton";
+import { Title } from "@/components/Title";
+import colors from "@/constants/colors";
 
 export const GameOverScreen = ({
   roundsNumber,
@@ -26,7 +25,11 @@ export const GameOverScreen = ({
     <View style={styles.screen}>
       <Title>The Game is Over!</Title>
       <View style={styles.imageContainer}>
-        <Image source={CircleImg} style={styles.image} resizeMode="cover" />
+        <Image
+          source={require("assets/success.png")}
+          style={styles.image}
+          resizeMode="cover"
+        />
       </View>
       <View style={styles.resultContainer}>
         <BodyText style={styles.resultText}>

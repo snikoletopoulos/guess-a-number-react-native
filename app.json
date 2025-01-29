@@ -6,16 +6,8 @@
     "githubUrl": "https://github.com/snikoletopoulos/guess-a-number-react-native",
     "version": "1.0.0",
     "orientation": "default",
+    "owner": "snikoletopoulos",
     "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.nikero.guess"
@@ -27,14 +19,16 @@
       },
       "package": "com.nikero.guess"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "9071a306-6134-4e5e-bd1b-0525b32cd125"
-      }
-    },
-    "owner": "snikoletopoulos"
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "backgroundColor": "#ffffff",
+          "imageWidth": 400
+        }
+      ]
+    ],
+    "extra": { "eas": { "projectId": "9071a306-6134-4e5e-bd1b-0525b32cd125" } }
   }
 }

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Header } from "components/Header";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { GameOverScreen } from "screens/GameOverScreen";
-import { GameScreen } from "screens/GameScreen";
-import { StartGameScreen } from "screens/StartGameScreen";
 
-SplashScreen.preventAutoHideAsync();
+import { Header } from "@/components/Header";
+import { GameOverScreen } from "@/screens/GameOverScreen";
+import { GameScreen } from "@/screens/GameScreen";
+import { StartGameScreen } from "@/screens/StartGameScreen";
+
+void SplashScreen.preventAutoHideAsync();
 
 const App = () => {
   const [userNumber, setUserNumber] = useState<number | null>(null);

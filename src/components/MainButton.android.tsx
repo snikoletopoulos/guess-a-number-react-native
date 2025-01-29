@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import {
   Platform,
   StyleSheet,
@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import colors from "constants/colors";
+
+import colors from "@/constants/colors";
 
 const MainButton = ({
   onPress,
@@ -15,14 +16,14 @@ const MainButton = ({
 }: { onPress: () => void } & PropsWithChildren) => {
   let ButtonWrapper: typeof TouchableNativeFeedback | typeof TouchableOpacity;
 
-  if (Platform.Version >= 21) {
+  if (+Platform.Version >= 21) {
     ButtonWrapper = TouchableNativeFeedback;
   } else {
     ButtonWrapper = TouchableOpacity;
   }
 
   return (
-    <View style={styles.buttonContainer}>
+    <View style={styles.container}>
       <ButtonWrapper onPress={onPress} activeOpacity={0.6}>
         <View style={styles.button}>
           <Text style={styles.text}>{children}</Text>
@@ -35,7 +36,7 @@ const MainButton = ({
 export default MainButton;
 
 const styles = StyleSheet.create({
-  buttonContainer: {
+  container: {
     borderRadius: 25,
     overflow: "hidden",
   },

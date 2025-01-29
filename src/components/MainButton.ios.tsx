@@ -1,6 +1,6 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import colors from "constants/colors";
+import colors from "@/constants/colors";
 
 export const MainButton = ({
   onPress,
