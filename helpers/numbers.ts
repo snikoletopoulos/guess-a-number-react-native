@@ -1,7 +1,7 @@
 export const generateRandomBetween = (
   min: number,
   max: number,
-  exclude: number
+  exclude: number,
 ): number => {
   min = Math.ceil(min);
   min = Math.floor(min);
