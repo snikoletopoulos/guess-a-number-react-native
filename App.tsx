@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
 
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 
-import StartGameScreen from "screens/StartGameScreen";
-import GameScreen from "screens/GameScreen";
-import GameOverScreen from "screens/GameOverScreen";
-import Header from "components/Header";
+import { StartGameScreen } from "screens/StartGameScreen";
+import { GameScreen } from "screens/GameScreen";
+import { GameOverScreen } from "screens/GameOverScreen";
+import { Header } from "components/Header";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -16,7 +16,7 @@ const fetchFonts = () => {
   });
 };
 
-const App: React.FC = () => {
+const App = () => {
   const [userNumber, setUserNumber] = useState<number | null>(null);
   const [rounds, setRounds] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -31,31 +31,26 @@ const App: React.FC = () => {
     );
   }
 
-  const configureNewGameHandler = () => {
-    setRounds(0);
-    setUserNumber(null);
-  };
-
-  const startGameHandler = (selectedNumber: number) => {
-    setUserNumber(selectedNumber);
-  };
-
-  const gameOverHandler = (numOfRounds: number) => {
-    setRounds(numOfRounds);
-  };
-
-  let content = <StartGameScreen onStartGame={startGameHandler} />;
+  let content = (
+    <StartGameScreen onStartGame={number => setUserNumber(number)} />
+  );
 
   if (userNumber && rounds <= 0) {
     content = (
-      <GameScreen userChoice={userNumber} onGameOver={gameOverHandler} />
+      <GameScreen
+        userChoice={userNumber}
+        onGameOver={numOfRounds => setRounds(numOfRounds)}
+      />
     );
   } else if (userNumber && rounds > 0) {
     content = (
       <GameOverScreen
         roundsNumber={rounds}
         userNumber={userNumber}
-        onRestart={configureNewGameHandler}
+        onRestart={() => {
+          setRounds(0);
+          setUserNumber(null);
+        }}
       />
     );
   }
@@ -70,11 +65,7 @@ const App: React.FC = () => {
 
 export default App;
 
-interface Styles {
-  screen: ViewStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
+const styles = StyleSheet.create({
   screen: {
     flex: 1,
   },

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
-  ViewStyle,
   StyleSheet,
   Button,
   TouchableWithoutFeedback,
@@ -13,17 +12,17 @@ import {
 } from "react-native";
 import colors from "constants/colors";
 
-import Card from "components/Card";
-import Input from "components/Input";
-import NumberContainer from "components/NumberContainer";
-import BodyText from "components/BodyText";
-import MainButton from "components/MainButton";
+import { Card } from "components/Card";
+import { Input } from "components/Input";
+import { NumberContainer } from "components/NumberContainer";
+import { BodyText } from "components/BodyText";
+import { MainButton } from "components/MainButton";
 
-interface Props {
+export const StartGameScreen = ({
+  onStartGame,
+}: {
   onStartGame: (number: number) => void;
-}
-
-const StartGameScreen: React.FC<Props> = props => {
+}) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(9);
@@ -32,20 +31,12 @@ const StartGameScreen: React.FC<Props> = props => {
   );
 
   useEffect(() => {
-    const updateLayout = () => {
-      setButtonWidth(Dimensions.get("window").width / 4);
-    };
+    const subscription = Dimensions.addEventListener("change", () =>
+      setButtonWidth(Dimensions.get("window").width / 4)
+    );
 
-    Dimensions.addEventListener("change", updateLayout);
-
-    return () => {
-      Dimensions.removeEventListener("change", updateLayout);
-    };
-  });
-
-  const numberInputHandler = (inputValue: string) => {
-    setEnteredValue(inputValue.replace(/[^0-9]/g, ""));
-  };
+    return () => subscription.remove();
+  }, []);
 
   const resetInputHandler = () => {
     setEnteredValue("");
@@ -58,7 +49,7 @@ const StartGameScreen: React.FC<Props> = props => {
       <Card style={styles.summaryContainer}>
         <BodyText>You selected</BodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <MainButton onPress={() => props.onStartGame(selectedNumber)}>
+        <MainButton onPress={() => onStartGame(selectedNumber)}>
           Start Game
         </MainButton>
       </Card>
@@ -77,6 +68,7 @@ const StartGameScreen: React.FC<Props> = props => {
       ]);
       return;
     }
+
     setConfirmed(true);
     setEnteredValue("");
     setSelectedNumber(parseInt(enteredValue));
@@ -86,15 +78,13 @@ const StartGameScreen: React.FC<Props> = props => {
   return (
     <ScrollView>
       <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            Keyboard.dismiss();
-          }}
-        >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
             <BodyText style={styles.title}>Start new game</BodyText>
+
             <Card style={styles.inputContainer}>
               <BodyText>Select a number</BodyText>
+
               <Input
                 value={enteredValue}
                 autoCorrect={false}
@@ -102,8 +92,11 @@ const StartGameScreen: React.FC<Props> = props => {
                 keyboardType="number-pad"
                 maxLength={2}
                 style={styles.input}
-                onChangeText={numberInputHandler}
+                onChangeText={value =>
+                  setEnteredValue(value.replace(/[^0-9]/g, ""))
+                }
               />
+
               <View style={styles.buttonContainer}>
                 <View style={{ width: buttonWidth }}>
                   <Button
@@ -112,6 +105,7 @@ const StartGameScreen: React.FC<Props> = props => {
                     onPress={resetInputHandler}
                   />
                 </View>
+
                 <View style={{ width: buttonWidth }}>
                   <Button
                     title="Confirm"
@@ -121,6 +115,7 @@ const StartGameScreen: React.FC<Props> = props => {
                 </View>
               </View>
             </Card>
+
             {confirmedOutput}
           </View>
         </TouchableWithoutFeedback>
@@ -129,49 +124,37 @@ const StartGameScreen: React.FC<Props> = props => {
   );
 };
 
-export default StartGameScreen;
-
-interface Styles {
-  screen: ViewStyle;
-}
-
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 10,
     alignItems: "center",
   },
-
   title: {
     fontSize: 20,
     marginVertical: 10,
     fontFamily: "open-sans-bold",
   },
-
   inputContainer: {
     minWidth: 300,
     width: "80%",
     maxWidth: "95%",
     alignItems: "center",
   },
-
   buttonContainer: {
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
     paddingHorizontal: 10,
   },
-
   button: {
     width: Dimensions.get("window").width / 4,
     fontFamily: "open-sans",
   },
-
   input: {
     width: 50,
     textAlign: "center",
   },
-
   summaryContainer: {
     marginTop: 20,
     alignItems: "center",

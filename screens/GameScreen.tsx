@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   StyleSheet,
   View,
-  ViewStyle,
   FlatList,
   Alert,
   Dimensions,
@@ -13,11 +12,11 @@ import colors from "constants/colors";
 
 import { generateRandomBetween } from "helpers/numbers";
 
-import NumberContainer from "components/NumberContainer";
-import Card from "components/Card";
-import MainButton from "components/MainButton";
-import Title from "components/Title";
-import BodyText from "components/BodyText";
+import { NumberContainer } from "components/NumberContainer";
+import { Card } from "components/Card";
+import { MainButton } from "components/MainButton";
+import { Title } from "components/Title";
+import { BodyText } from "components/BodyText";
 
 const renderListItem = (
   listLength: number,
@@ -29,12 +28,13 @@ const renderListItem = (
   </View>
 );
 
-interface Props {
+export const GameScreen = ({
+  userChoice,
+  onGameOver,
+}: {
   userChoice: number;
   onGameOver: (number: number) => void;
-}
-
-const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
+}) => {
   const initialGuess = generateRandomBetween(1, 100, userChoice);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [pastGuesses, setPastGuesses] = useState([initialGuess]);
@@ -55,17 +55,13 @@ const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
   }, [currentGuess, userChoice, onGameOver]);
 
   useEffect(() => {
-    const updateLayout = () => {
+    const subscription = Dimensions.addEventListener("change", () => {
       setDeviceWidth(Dimensions.get("window").width);
       setDeviceHeight(Dimensions.get("window").height);
-    };
+    });
 
-    Dimensions.addEventListener("change", updateLayout);
-
-    return () => {
-      Dimensions.removeEventListener("change", updateLayout);
-    };
-  });
+    return () => subscription.remove();
+  }, []);
 
   const nextGuessHandler = (direction: "lower" | "greater") => {
     if (
@@ -83,6 +79,7 @@ const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
     } else {
       currentLow.current = currentGuess + 1;
     }
+
     const nextNumber = generateRandomBetween(
       currentLow.current,
       currentHigh.current,
@@ -103,11 +100,11 @@ const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
     gameControls = (
       <View style={styles.controls}>
         <MainButton onPress={nextGuessHandler.bind(this, "lower")}>
-          <Ionicons name="md-remove" size={24} color="white" />
+          <Ionicons name="remove" size={24} color="white" />
         </MainButton>
         <NumberContainer>{currentGuess}</NumberContainer>
         <MainButton onPress={nextGuessHandler.bind(this, "greater")}>
-          <Ionicons name="md-add" size={24} color="white" />
+          <Ionicons name="add" size={24} color="white" />
         </MainButton>
       </View>
     );
@@ -115,12 +112,14 @@ const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
     gameControls = (
       <>
         <NumberContainer>{currentGuess}</NumberContainer>
+
         <Card style={styles.buttonContainer}>
           <MainButton onPress={nextGuessHandler.bind(this, "lower")}>
-            <Ionicons name="md-remove" size={24} color="white" />
+            <Ionicons name="remove" size={24} color="white" />
           </MainButton>
+
           <MainButton onPress={nextGuessHandler.bind(this, "greater")}>
-            <Ionicons name="md-add" size={24} color="white" />
+            <Ionicons name="add" size={24} color="white" />
           </MainButton>
         </Card>
       </>
@@ -131,6 +130,7 @@ const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       {gameControls}
+
       <View style={listContainerStyle}>
         <FlatList
           keyExtractor={guess => guess.toString()}
@@ -143,25 +143,12 @@ const GameScreen: React.FC<Props> = ({ userChoice, onGameOver }) => {
   );
 };
 
-export default GameScreen;
-
-interface Styles {
-  screen: ViewStyle;
-  buttonContainer: ViewStyle;
-  listContainer: ViewStyle;
-  listContainerBig: ViewStyle;
-  list: ViewStyle;
-  listItem: ViewStyle;
-  controls: ViewStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
+const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 10,
     alignItems: "center",
   },
-
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
@@ -169,29 +156,24 @@ const styles = StyleSheet.create<Styles>({
     width: 300,
     maxWidth: "90%",
   },
-
   controls: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     width: "80%",
   },
-
   listContainer: {
     flex: 1,
     width: "80%",
   },
-
   listContainerBig: {
     flex: 1,
     width: "60%",
   },
-
   list: {
     flexGrow: 1,
     justifyContent: "flex-end",
   },
-
   listItem: {
     borderColor: colors.accent,
     borderWidth: 1,

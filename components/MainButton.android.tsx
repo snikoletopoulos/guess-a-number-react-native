@@ -1,21 +1,18 @@
-import React from "react";
 import {
   StyleSheet,
   Text,
-  TextStyle,
   View,
-  ViewStyle,
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
 } from "react-native";
 import colors from "constants/colors";
+import { PropsWithChildren } from "node_modules/@types/react";
 
-interface Props {
-  onPress: () => void;
-}
-
-const MainButton: React.FC<Props> = props => {
+const MainButton = ({
+  onPress,
+  children,
+}: { onPress: () => void } & PropsWithChildren) => {
   let ButtonWrapper: typeof TouchableNativeFeedback | typeof TouchableOpacity;
 
   if (Platform.Version >= 21) {
@@ -26,9 +23,9 @@ const MainButton: React.FC<Props> = props => {
 
   return (
     <View style={styles.buttonContainer}>
-      <ButtonWrapper onPress={props.onPress} activeOpacity={0.6}>
+      <ButtonWrapper onPress={onPress} activeOpacity={0.6}>
         <View style={styles.button}>
-          <Text style={styles.text}>{props.children}</Text>
+          <Text style={styles.text}>{children}</Text>
         </View>
       </ButtonWrapper>
     </View>
@@ -37,25 +34,17 @@ const MainButton: React.FC<Props> = props => {
 
 export default MainButton;
 
-interface Styles {
-  buttonContainer: ViewStyle;
-  button: ViewStyle;
-  text: TextStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
+const styles = StyleSheet.create({
   buttonContainer: {
     borderRadius: 25,
     overflow: "hidden",
   },
-
   button: {
     backgroundColor: colors.primary,
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 25,
   },
-
   text: {
     color: "white",
     fontFamily: "open-sans",

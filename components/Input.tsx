@@ -1,22 +1,10 @@
-import React from "react";
-import { TextInput, TextStyle, StyleSheet, StyleProp } from "react-native";
+import { TextInput, StyleSheet, TextInputProps } from "react-native";
 
-interface Props {
-  style?: StyleProp<TextStyle>;
-  [key: string]: any;
-}
+export const Input = ({ style, ...restProps }: TextInputProps) => (
+  <TextInput {...restProps} style={[styles.input, style]} />
+);
 
-const Input: React.FC<Props> = props => {
-  return <TextInput {...props} style={[styles.input, props.style]} />;
-};
-
-export default Input;
-
-interface Styles {
-  input: TextStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
+const styles = StyleSheet.create({
   input: {
     height: 30,
     borderBottomColor: "grey",

@@ -1,26 +1,12 @@
-import React from "react";
-import { StyleSheet, Text, TextStyle, StyleProp } from "react-native";
+import { StyleSheet, Text, TextProps } from "react-native";
 
-interface Props {
-  style?: StyleProp<TextStyle>;
-  [key: string]: any;
-}
+export const BodyText = ({ style, children, ...restProps }: TextProps) => (
+  <Text {...restProps} style={[styles.bodyText, style]}>
+    {children}
+  </Text>
+);
 
-const BodyText: React.FC<Props> = props => {
-  return (
-    <Text {...props} style={[styles.bodyText, props.style]}>
-      {props.children}
-    </Text>
-  );
-};
-
-export default BodyText;
-
-interface Styles {
-  bodyText: TextStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
+const styles = StyleSheet.create({
   bodyText: {
     fontFamily: "open-sans",
   },
