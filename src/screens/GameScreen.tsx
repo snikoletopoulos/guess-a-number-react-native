@@ -10,6 +10,11 @@ import { Title } from "@/components/Title";
 import colors from "@/constants/colors";
 import { generateRandomBetween } from "@/helpers/numbers";
 
+enum Direction {
+  Greater,
+  Lower,
+}
+
 export const GameScreen = ({
   userChoice,
   onGameOver,
@@ -45,10 +50,10 @@ export const GameScreen = ({
     return () => subscription.remove();
   }, []);
 
-  const nextGuessHandler = (direction: "lower" | "greater") => {
+  const nextGuessHandler = (direction: Direction) => {
     if (
-      (direction === "lower" && currentGuess < userChoice) ||
-      (direction === "greater" && currentGuess > userChoice)
+      (direction === Direction.Lower && currentGuess < userChoice) ||
+      (direction === Direction.Greater && currentGuess > userChoice)
     ) {
       Alert.alert("Don't lie!", "You know that this is wrong...", [
         { text: "Sorry!", style: "cancel" },
@@ -56,10 +61,15 @@ export const GameScreen = ({
       return;
     }
 
-    if (direction === "lower") {
-      currentHigh.current = currentGuess;
-    } else {
-      currentLow.current = currentGuess + 1;
+    switch (direction) {
+      case Direction.Lower: {
+        currentHigh.current = currentGuess;
+        break;
+      }
+      case Direction.Greater: {
+        currentLow.current = currentGuess + 1;
+        break;
+      }
     }
 
     const nextNumber = generateRandomBetween(
@@ -76,11 +86,11 @@ export const GameScreen = ({
       <NumberContainer>{currentGuess}</NumberContainer>
 
       <Card style={styles.buttonContainer}>
-        <MainButton onPress={() => nextGuessHandler("lower")}>
+        <MainButton onPress={() => nextGuessHandler(Direction.Lower)}>
           <Ionicons name="remove" size={24} color="white" />
         </MainButton>
 
-        <MainButton onPress={() => nextGuessHandler("greater")}>
+        <MainButton onPress={() => nextGuessHandler(Direction.Greater)}>
           <Ionicons name="add" size={24} color="white" />
         </MainButton>
       </Card>
@@ -90,13 +100,13 @@ export const GameScreen = ({
   if (deviceHeight < 400) {
     gameControls = (
       <View style={styles.controls}>
-        <MainButton onPress={() => nextGuessHandler("lower")}>
+        <MainButton onPress={() => nextGuessHandler(Direction.Lower)}>
           <Ionicons name="remove" size={24} color="white" />
         </MainButton>
 
         <NumberContainer>{currentGuess}</NumberContainer>
 
-        <MainButton onPress={() => nextGuessHandler("greater")}>
+        <MainButton onPress={() => nextGuessHandler(Direction.Greater)}>
           <Ionicons name="add" size={24} color="white" />
         </MainButton>
       </View>
