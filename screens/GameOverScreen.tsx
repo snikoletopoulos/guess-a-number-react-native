@@ -1,19 +1,17 @@
 import React from "react";
 import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
   Dimensions,
+  Image,
   ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
-import colors from "constants/colors";
-
 import CircleImg from "assets/success.png";
-
 import { BodyText } from "components/BodyText";
-import { Title } from "components/Title";
 import { MainButton } from "components/MainButton";
+import { Title } from "components/Title";
+import colors from "constants/colors";
 
 export const GameOverScreen = ({
   roundsNumber,
