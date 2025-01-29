@@ -17,7 +17,6 @@
     },
     "staging": {
       "environment": "preview",
-      "channel": "preview",
       "distribution": "internal",
       "ios": { "image": "latest" },
       "env": { "APP_VARIANT": "staging" }
