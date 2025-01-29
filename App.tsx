@@ -1,13 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-
-import * as Font from "expo-font";
-import AppLoading from "expo-app-loading";
-
-import { StartGameScreen } from "screens/StartGameScreen";
-import { GameScreen } from "screens/GameScreen";
-import { GameOverScreen } from "screens/GameOverScreen";
 import { Header } from "components/Header";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { GameOverScreen } from "screens/GameOverScreen";
+import { GameScreen } from "screens/GameScreen";
+import { StartGameScreen } from "screens/StartGameScreen";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -16,23 +14,28 @@ const fetchFonts = () => {
   });
 };
 
+SplashScreen.preventAutoHideAsync();
+
 const App = () => {
   const [userNumber, setUserNumber] = useState<number | null>(null);
   const [rounds, setRounds] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
 
+  useEffect(() => {
+    fetchFonts()
+      .then(() => setDataLoaded(true))
+      .catch(error => console.log(error, "AppLoading error"));
+  }, []);
+
   if (!dataLoaded) {
-    return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => setDataLoaded(true)}
-        onError={error => console.log(error, "AppLoading error")}
-      />
-    );
+    return null;
   }
 
   let content = (
-    <StartGameScreen onStartGame={number => setUserNumber(number)} />
+    <StartGameScreen
+      onLayout={SplashScreen.hide}
+      onStartGame={number => setUserNumber(number)}
+    />
   );
 
   if (userNumber && rounds <= 0) {
@@ -56,7 +59,7 @@ const App = () => {
   }
 
   return (
-    <View style={styles.screen}>
+    <View onLayout={SplashScreen.hide} style={styles.screen}>
       <Header title="Guess a Number" />
       {content}
     </View>
