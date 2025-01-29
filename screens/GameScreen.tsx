@@ -1,26 +1,24 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  StyleSheet,
-  View,
-  FlatList,
   Alert,
   Dimensions,
+  FlatList,
   ListRenderItemInfo,
+  StyleSheet,
+  View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import colors from "constants/colors";
-
-import { generateRandomBetween } from "helpers/numbers";
-
-import { NumberContainer } from "components/NumberContainer";
+import { BodyText } from "components/BodyText";
 import { Card } from "components/Card";
 import { MainButton } from "components/MainButton";
+import { NumberContainer } from "components/NumberContainer";
 import { Title } from "components/Title";
-import { BodyText } from "components/BodyText";
+import colors from "constants/colors";
+import { generateRandomBetween } from "helpers/numbers";
 
 const renderListItem = (
   listLength: number,
-  itemData: ListRenderItemInfo<number>
+  itemData: ListRenderItemInfo<number>,
 ) => (
   <View style={styles.listItem}>
     <BodyText>#{listLength - itemData.index}test</BodyText>
@@ -39,10 +37,10 @@ export const GameScreen = ({
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [pastGuesses, setPastGuesses] = useState([initialGuess]);
   const [deviceWidth, setDeviceWidth] = useState(
-    Dimensions.get("window").width
+    Dimensions.get("window").width,
   );
   const [deviceHeight, setDeviceHeight] = useState(
-    Dimensions.get("window").height
+    Dimensions.get("window").height,
   );
 
   const currentLow = useRef(1);
@@ -83,7 +81,7 @@ export const GameScreen = ({
     const nextNumber = generateRandomBetween(
       currentLow.current,
       currentHigh.current,
-      currentGuess
+      currentGuess,
     );
     setCurrentGuess(nextNumber);
     setPastGuesses(pastGuesses => [nextNumber, ...pastGuesses]);
