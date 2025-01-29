@@ -16,12 +16,10 @@ const App = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    Font.loadAsync({
+    void Font.loadAsync({
       "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
       "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
-    })
-      .then(() => setDataLoaded(true))
-      .catch(error => console.log(error, "AppLoading error"));
+    }).then(() => setDataLoaded(true));
   }, []);
 
   if (!dataLoaded) {
@@ -29,10 +27,7 @@ const App = () => {
   }
 
   let content = (
-    <StartGameScreen
-      onLayout={SplashScreen.hide}
-      onStartGame={number => setUserNumber(number)}
-    />
+    <StartGameScreen onStartGame={number => setUserNumber(number)} />
   );
 
   if (userNumber && rounds <= 0) {

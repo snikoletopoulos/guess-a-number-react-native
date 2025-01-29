@@ -118,7 +118,7 @@ export const GameScreen = ({
           data={pastGuesses}
           renderItem={item => (
             <View style={styles.listItem}>
-              <BodyText>#{pastGuesses.length - item.index}test</BodyText>
+              <BodyText>#{pastGuesses.length - item.index}</BodyText>
               <BodyText>{item.item}</BodyText>
             </View>
           )}

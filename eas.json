@@ -10,7 +10,8 @@
       "ios": {
         "simulator": true,
         "image": "latest"
-      }
+      },
+      "android": { "buildType": "apk" }
     },
     "staging": {
       "distribution": "internal",
