@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
-  View,
-  StyleSheet,
-  Button,
-  TouchableWithoutFeedback,
-  Keyboard,
   Alert,
+  Button,
   Dimensions,
-  ScrollView,
+  Keyboard,
   KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
-import colors from "constants/colors";
-
+import { BodyText } from "components/BodyText";
 import { Card } from "components/Card";
 import { Input } from "components/Input";
-import { NumberContainer } from "components/NumberContainer";
-import { BodyText } from "components/BodyText";
 import { MainButton } from "components/MainButton";
+import { NumberContainer } from "components/NumberContainer";
+import colors from "constants/colors";
 
 export const StartGameScreen = ({
   onStartGame,
@@ -27,12 +26,12 @@ export const StartGameScreen = ({
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(9);
   const [buttonWidth, setButtonWidth] = useState(
-    Dimensions.get("window").width / 4
+    Dimensions.get("window").width / 4,
   );
 
   useEffect(() => {
     const subscription = Dimensions.addEventListener("change", () =>
-      setButtonWidth(Dimensions.get("window").width / 4)
+      setButtonWidth(Dimensions.get("window").width / 4),
     );
 
     return () => subscription.remove();
