@@ -19,8 +19,10 @@ import colors from "constants/colors";
 
 export const StartGameScreen = ({
   onStartGame,
+  onLayout,
 }: {
   onStartGame: (number: number) => void;
+  onLayout: () => void;
 }) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
@@ -75,7 +77,7 @@ export const StartGameScreen = ({
   };
 
   return (
-    <ScrollView>
+    <ScrollView onLayout={onLayout}>
       <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
@@ -87,7 +89,6 @@ export const StartGameScreen = ({
               <Input
                 value={enteredValue}
                 autoCorrect={false}
-                blurOnSubmit
                 keyboardType="number-pad"
                 maxLength={2}
                 style={styles.input}
