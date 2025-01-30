@@ -1,67 +1,64 @@
-import React, { useState } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-
+import { useEffect, useState } from "react";
+import { Alert, StyleSheet, View } from "react-native";
 import * as Font from "expo-font";
-import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
 
-import StartGameScreen from "screens/StartGameScreen";
-import GameScreen from "screens/GameScreen";
-import GameOverScreen from "screens/GameOverScreen";
-import Header from "components/Header";
+import { Header } from "@/components/Header";
+import { GameOverScreen } from "@/screens/GameOverScreen";
+import { GameScreen } from "@/screens/GameScreen";
+import { StartGameScreen } from "@/screens/StartGameScreen";
 
-const fetchFonts = () => {
-  return Font.loadAsync({
-    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
-  });
-};
+void SplashScreen.preventAutoHideAsync();
 
-const App: React.FC = () => {
+const App = () => {
   const [userNumber, setUserNumber] = useState<number | null>(null);
   const [rounds, setRounds] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
 
+  useEffect(() => {
+    void Font.loadAsync({
+      "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+      "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+    })
+      .then(() => setDataLoaded(true))
+      .catch(() =>
+        Alert.alert(
+          "Error",
+          "Failed to load application resources. Please restart the app.",
+        ),
+      );
+  }, []);
+
   if (!dataLoaded) {
-    return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => setDataLoaded(true)}
-        onError={error => console.log(error, "AppLoading error")}
-      />
-    );
+    return null;
   }
 
-  const configureNewGameHandler = () => {
-    setRounds(0);
-    setUserNumber(null);
-  };
-
-  const startGameHandler = (selectedNumber: number) => {
-    setUserNumber(selectedNumber);
-  };
-
-  const gameOverHandler = (numOfRounds: number) => {
-    setRounds(numOfRounds);
-  };
-
-  let content = <StartGameScreen onStartGame={startGameHandler} />;
+  let content = (
+    <StartGameScreen onStartGame={number => setUserNumber(number)} />
+  );
 
   if (userNumber && rounds <= 0) {
     content = (
-      <GameScreen userChoice={userNumber} onGameOver={gameOverHandler} />
+      <GameScreen
+        userChoice={userNumber}
+        onGameOver={numOfRounds => setRounds(numOfRounds)}
+      />
     );
   } else if (userNumber && rounds > 0) {
     content = (
       <GameOverScreen
         roundsNumber={rounds}
         userNumber={userNumber}
-        onRestart={configureNewGameHandler}
+        onRestart={() => {
+          setRounds(0);
+          setUserNumber(null);
+        }}
       />
     );
   }
 
   return (
-    <View style={styles.screen}>
+    <View onLayout={SplashScreen.hide} style={styles.screen}>
       <Header title="Guess a Number" />
       {content}
     </View>
@@ -70,11 +67,7 @@ const App: React.FC = () => {
 
 export default App;
 
-interface Styles {
-  screen: ViewStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
+const styles = StyleSheet.create({
   screen: {
     flex: 1,
   },
